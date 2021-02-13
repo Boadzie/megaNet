@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>{{title}} - Mega</title>
+  </head>
+  <body>
+    <div class="flex justify-end px-3 py-3 mb-4 text-white bg-gray-800">
+      <a class="mx-2" href="/">Home</a>
+      {% if current_user.is_anonymous %}
+      <a href="{{url_for('login')}}">Login</a>
+      {% else %}
+      <a class="mx-2" href="{{url_for('logout')}}">Logout</a>
+      <span class="text-white">Hi {{ current_user.username}}!</span>
+      {% endif %}
+      
+    </div>
+    
+    <div class="container px-4 py-4 mx-auto">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+            message in messages %}
+            <ul>
+              <li class="text-red-600 text-muted">{{message}}</li>
+            </ul>
+            {% endfor %} {% endif %} {% endwith %}
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

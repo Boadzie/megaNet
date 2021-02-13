@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-2 text-3xl text-center">Sign In</h1>
+
+<form class="w-2/6 px-10 py-10 ml-auto mr-auto bg-gray-200 rounded-lg" action="" method="post">
+    {{form.hidden_tag()}}
+ <p>{{form.username.label(class="text-sm leading-7 text-gray-600")}}
+     <br/>
+     {{form.username(class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200")}}
+     <br/>
+     {% for error in form.username.errors %}
+       <span class="text-red-600 text-muted">{{error}}</span>
+     {% endfor %}
+ </p>
+ <p class="mt-2 mb-2">
+     {{form.password.label(class="text-sm leading-7 text-gray-600")}}
+     <br/>
+     {{form.password(class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200")}}<br/>
+     {% for error in form.password.errors %}
+       <span class="text-red-600 text-muted">{{error}}</span>
+     {% endfor %}
+ </p>
+ <p>
+     {{form.remember_me()}}
+     {{form.remember_me.label}}
+ </p>
+  <p>{{form.submit(class="w-full px-4 py-2 mt-1 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600")}}</p>
+</form>
+<p class="w-2/6 mt-2 ml-auto mr-auto">New User? <a class="text-blue-300 cursor-pointer" href="{{ url_for('register') }}">Click to Register!</a></p>
+{% endblock %}
