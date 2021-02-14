@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex flex-col items-center justify-center ">
+  <h1 class="text-3xl text-center">{{ user.username }}'s Profile</h1>
+  <img
+    class="object-cover object-center w-40 mt-3 rounded-full"
+    src="{{ user.avatar(150)}}"
+  />
+  <div class="flex flex-col items-center justify-center mt-2">
+    {% if user.about_me %}
+     <p class="mb-2 text-sm">{{user.about_me}}</p> 
+    {% endif %}
+   {% if user.last_seen %}
+   <p class="mb-2 text-sm font-light">Last seen on: {{user.last_seen}}</p>
+    {% endif %}
+    {% if user == current_user %}
+      <p class="p-2 ml-2 text-white bg-blue-500 rounded "><a href="{{ url_for('edit_profile') }}">Edit Profile</a></p>
+    {% endif %}
+  </div>
+</div>
+{% include "_post.html" %}
+{% endblock %}
